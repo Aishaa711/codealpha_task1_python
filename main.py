@@ -1,5 +1,5 @@
+print("Welcome to the Hangman game!")
 import random
-
 words = {
     "summer": "hot season",
     "glasses": "help you see",
@@ -38,11 +38,16 @@ wrong_guesses = 0
 guessed_letters = [" ", "-"]
 won = False
 while wrong_guesses < 7:
-    guess = input("Guess a letter: ")
+    guess = input("Guess a letter: ").lower()
+    if len(guess) != 1:
+        print("Please enter one letter.")
+        continue
+    if guess in guessed_letters:
+        print("You already guessed this letter.")
+        continue
     if guess in word:
         print("You guessed the letter correctly")
         guessed_letters.append(guess)
-
     else:
         print("You guessed the letter incorrectly")
         wrong_guesses += 1
@@ -70,3 +75,4 @@ if won:
 else:
     print("You lost!")
     print("The word was:", word)
+    print("end of the game")
